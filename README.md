@@ -9,33 +9,15 @@ If you already have a account then use a different email address.
 
 
 
-## Installation of Docker
+## Docker and Docker Compose
+- Install Docker and Docker Compose through SSH
+  ````
+  ssh root@167.71.151.150 # IPv4 from DigitalOcean Droplet
+  ````
 - For the installation of Docker, I used the following url to guide in installing Docker. 
   - https://docs.docker.com/engine/install/ubuntu/
-### Uninstall old versions
-- Uninstall all unofficial Docker packages, which may conflict with the official packages provided by Docker.
+- D
 ````
-sudo apt remove $(dpkg --get-selections docker.io docker-compose docker-compose-v2 docker-doc podman-docker containerd runc | cut -f1)
-````
-### Install using the apt repository
-1. Set up Docker **apt** repository:
-````
-# Add Docker's official GPG key:
-sudo apt update
-sudo apt install ca-certificates curl
-sudo install -m 0755 -d /etc/apt/keyrings
-sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
-sudo chmod a+r /etc/apt/keyrings/docker.asc
-
-# Add the repository to Apt sources:
-sudo tee /etc/apt/sources.list.d/docker.sources <<EOF
-Types: deb
-URIs: https://download.docker.com/linux/ubuntu
-Suites: $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}")
-Components: stable
-Signed-By: /etc/apt/keyrings/docker.asc
-EOF
-
 sudo apt update
 ````
 2. Install the Docker packages:
@@ -79,24 +61,23 @@ services:
   wireguard:
     container_name: wireguard
     image: linuxserver/wireguard
+    cap_add:
+          - NET_ADMIN
+          - SYS_MODULE
     environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=America/Chicago
-      - SERVERURL=167.71.151.150
+      - PUID=0
+      - PGID=0
+      - TZ=America/Chicago # Timezone
+      - SERVERURL=167.71.151.150 # IPv4 from Droplet
       - SERVERPORT=51820
-      - PEERS=pc,phone
+      - PEERS=2
       - PEERDNS=auto
-      - INTERNAL_SUBNET=10.0.0.0
     ports:
-      - 80:51820/udp
+      - 51820:51820/udp
     volumes:
       - ./config/:/config/
       - /lib/modules:/lib/modules
-    restart: always
-    cap_add:
-      - NET_ADMIN
-      - SYS_MODULE
+    restart: unless-stopped
     sysctls:
       - net.ipv4.conf.all.src_valid_mark=1
 ````
@@ -108,11 +89,18 @@ Checking the container logs
 ````
 sudo docker ps
 ````
+Generate Peer Configuration
+````
+cd /wg/config/peer1
+cat peer.conf
+docker exec -it wireguard /app/show peer 1
+scp root@161.35.132.166
+````
 ## Test the VPN with a mobile phone
-Download and open the Wireguard app on your phone
-Use the "+" button to add a new tunnel
-Choose the "Create from QR code"
-In your files, look at the PEER that was created. I choose peer_phone.config and scanned the QR code. 
+- Download and open the Wireguard app on your phone
+- Use the "+" button to add a new tunnel
+- Choose the "Create from QR code"
+
 
 Open the tunnel
 ````
