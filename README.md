@@ -106,7 +106,7 @@ sudo docker ps
 ````
 Generate Peer Configuration
 ````
-cd /wireguard/config/peer1
+cd wireguard/config/peer1
 cat peer1.conf
 docker exec -it wireguard /app/show-peer 1
 scp root@143.110.142.62
