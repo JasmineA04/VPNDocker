@@ -12,7 +12,7 @@ If you already have a account then use a different email address.
 ## Docker and Docker Compose
 - Install Docker and Docker Compose through SSH
   ````
-  ssh root@167.71.151.150 # IPv4 from DigitalOcean Droplet
+  ssh root@143.110.142.62 # IPv4 from DigitalOcean Droplet
   ````
 - For the installation of Docker, I used the following url to guide in installing Docker. 
   - https://docs.docker.com/engine/install/ubuntu/
@@ -50,7 +50,7 @@ sudo systemctl start docker
 ````
 - Verify that the installation is successful by running the **hello-world** image:
 ````
-sudo docker run hello-word
+sudo docker run hello-world
 ````
 
 ### Install Docker Compose
@@ -83,7 +83,7 @@ services:
       - PUID=0
       - PGID=0
       - TZ=America/Chicago # Timezone
-      - SERVERURL=167.71.151.150 # IPv4 from Droplet
+      - SERVERURL=143.110.142.62 # IPv4 from Droplet
       - SERVERPORT=51820
       - PEERS=2
       - PEERDNS=auto
@@ -106,10 +106,10 @@ sudo docker ps
 ````
 Generate Peer Configuration
 ````
-cd /wg/config/peer1
-cat peer.conf
-docker exec -it wireguard /app/show peer 1
-scp root@161.35.132.166
+cd /wireguard/config/peer1
+cat peer1.conf
+docker exec -it wireguard /app/show-peer 1
+scp root@143.110.142.62
 ````
 ## Test the VPN with a mobile phone
 - Download and open the Wireguard app on your phone
