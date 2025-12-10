@@ -1,4 +1,4 @@
-# VPNDocker
+# VPNDocker Project
  - Any picture indicated in the document is attached on a seperate document
 ## Sign up for a DigitalOcean.com Account
 Use the link of https://m.do.co/c/d33d59113ab6 to get a $200 credit for 2 months. 
