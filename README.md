@@ -80,13 +80,14 @@ services:
           - NET_ADMIN
           - SYS_MODULE
     environment:
-      - PUID=0
-      - PGID=0
+      - PUID=1000
+      - PGID=1000
       - TZ=America/Chicago # Timezone
       - SERVERURL=143.110.142.62 # IPv4 from Droplet
       - SERVERPORT=51820
       - PEERS=2
       - PEERDNS=auto
+      - INTERNAL_SUBNET=10.0.0.0
     ports:
       - 51820:51820/udp
     volumes:
