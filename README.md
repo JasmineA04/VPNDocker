@@ -1,5 +1,5 @@
 # VPNDocker Project
- - Any picture indicated in the document is attached on a seperate document
+ - Verification pictures will be placed in a seperate document called Computer.pdf. 
 ## Sign up for a DigitalOcean.com Account
 Use the link of https://m.do.co/c/d33d59113ab6 to get a $200 credit for 2 months. 
 This will require you to input your banking infroamtion. So you need to delete your account 2 months after the account was made for the project. 
