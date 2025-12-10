@@ -12,7 +12,7 @@ If you already have a account then use a different email address.
 ## Docker and Docker Compose
 - Install Docker and Docker Compose through SSH
   ````
-  ssh root@143.110.142.62 # IPv4 from DigitalOcean Droplet
+  ssh root@138.68.42.214 # IPv4 from DigitalOcean Droplet
   ````
 - For the installation of Docker, I used the following url to guide in installing Docker. 
   - https://docs.docker.com/engine/install/ubuntu/
@@ -81,7 +81,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=America/Chicago # Timezone
-      - SERVERURL=143.110.142.62 # IPv4 from Droplet
+      - SERVERURL=138.68.42.214 # IPv4 from Droplet
       - SERVERPORT=51820
       - PEERS=2
       - PEERDNS=auto
@@ -92,7 +92,7 @@ services:
       - type: bind
         source: ./config/
         target: /config/
-        type: bind
+      - type: bind
         source: /lib/modules
         target: /lib/modules
     restart: always
