@@ -95,7 +95,7 @@ services:
         type: bind
         source: /lib/modules
         target: /lib/modules
-    restart: unless-stopped
+    restart: always
     cap_add:
           - NET_ADMIN
           - SYS_MODULE
